@@ -1,31 +1,49 @@
-import { Card, Typography } from "antd";
+import React from "react";
+import { Card, Typography, Button } from "antd";
 import { Link } from "react-router-dom";
 import { UserOutlined, FileTextOutlined } from "@ant-design/icons";
 
 const { Title } = Typography;
 
-const cardBase: React.CSSProperties = {
-  width: 300,
-  minHeight: 200,
-  textAlign: "center",
-  borderRadius: 16,
-  boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
-  position: "relative",
-  overflow: "hidden",
-  transition: "all 0.3s ease",
-  background: "linear-gradient(135deg, #2a2a2a 0%, #1d1d1d 100%)",
-  color: "#fff",
+type DashboardCard = {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  link: string;
+  linkText: string;
 };
 
-const iconBg: React.CSSProperties = {
-  position: "absolute",
-  fontSize: 160,
-  color: "rgba(255,255,255,0.05)",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  pointerEvents: "none",
-  zIndex: 0,
+const cards: DashboardCard[] = [
+  {
+    title: "Users",
+    description: "Browse the user list.",
+    icon: <UserOutlined style={{ fontSize: 160, color: "rgba(255,255,255,0.05)" }} />,
+    link: "/users",
+    linkText: "Go to Users",
+  },
+  {
+    title: "Posts",
+    description: "Browse the post list.",
+    icon: <FileTextOutlined style={{ fontSize: 160, color: "rgba(255,255,255,0.05)" }} />,
+    link: "/posts",
+    linkText: "Go to Posts",
+  },
+];
+
+
+const cardBase: React.CSSProperties = {
+  width: "100%",
+  maxWidth: 300,
+  minHeight: 220,
+  textAlign: "center",
+  borderRadius: 16,
+  boxShadow: "0 6px 20px rgba(0,0,0,0.1)",
+  position: "relative",
+  overflow: "hidden",
+  background: "linear-gradient(135deg, #2a2a2a 0%, #1d1d1d 100%)",
+  color: "#fff",
+  margin: "0 auto",
+  transition: "all 0.3s ease",
 };
 
 const contentStyle: React.CSSProperties = {
@@ -33,45 +51,52 @@ const contentStyle: React.CSSProperties = {
   zIndex: 1,
 };
 
-const Homepage = () => {
+const Homepage: React.FC = () => {
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-        gap: "30px",
-        justifyContent: "center",
-        marginTop: "50px",
-        padding: "0 20px",
-      }}
-    >
+    <div style={{ padding: 20 }}>
       <Card
-        hoverable
-        style={cardBase}
-        bodyStyle={{ padding: 24 }}
+        title={<Title level={3} style={{ margin: 0 }}>Cards</Title>}
+        style={{ borderRadius: 16, overflowX: "auto" }}
       >
-        <UserOutlined style={iconBg} />
-        <div style={contentStyle}>
-          <Title level={4} style={{ color: "#fff" }}>Users</Title>
-          <p>Browse the user list.</p>
-          <Link to="/users" style={{ color: "#ff4d4f", fontWeight: 500 }}>
-            Go to Users
-          </Link>
-        </div>
-      </Card>
-
-      <Card
-        hoverable
-        style={cardBase}
-        bodyStyle={{ padding: 24 }}
-      >
-        <FileTextOutlined style={iconBg} />
-        <div style={contentStyle}>
-          <Title level={4} style={{ color: "#fff" }}>Posts</Title>
-          <p>Browse the post list.</p>
-          <Link to="/posts" style={{ color: "#ff4d4f", fontWeight: 500 }}>
-            Go to Posts
-          </Link>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: "30px",
+            justifyContent: "center",
+          }}
+        >
+          {cards.map((card, idx) => (
+            <Card
+              key={idx}
+              hoverable
+              style={cardBase}
+              bodyStyle={{ padding: 24 }}
+              onMouseEnter={e => (e.currentTarget.style.transform = "scale(1.05)")}
+              onMouseLeave={e => (e.currentTarget.style.transform = "scale(1)")}
+            >
+              {card.icon}
+              <div style={contentStyle}>
+                <Title level={4} style={{ color: "#fff" }}>
+                  {card.title}
+                </Title>
+                <p>{card.description}</p>
+                <Link to={card.link}>
+                  <Button
+                    type="primary"
+                    ghost
+                    style={{
+                      borderRadius: 8,
+                      fontWeight: 500,
+                      transition: "all 0.3s",
+                    }}
+                  >
+                    {card.linkText}
+                  </Button>
+                </Link>
+              </div>
+            </Card>
+          ))}
         </div>
       </Card>
     </div>
