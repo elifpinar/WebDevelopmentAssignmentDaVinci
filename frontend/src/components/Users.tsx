@@ -45,7 +45,7 @@ const Users: React.FC = () => {
           rowKey="id"
           loading={loading}
           pagination={{ pageSize: 10, responsive: true }}
-          scroll={{ x: "max-content" }}  // 🔥 tablo ekran taşırmaz
+          scroll={{ x: "max-content" }}  
         />
       </div>
     </Card>
