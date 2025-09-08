@@ -23,7 +23,7 @@ const PageTitle = () => {
 };
 
 const App = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
 
