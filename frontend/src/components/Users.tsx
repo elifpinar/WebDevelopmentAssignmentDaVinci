@@ -146,33 +146,38 @@ const Users: React.FC = () => {
   ];
 
   return (
-    <Card
-      title="Users List"
-      style={{ marginTop: 20 }}
-      extra={
-        <Space>
-          <Input
-            placeholder="Search users..."
-            prefix={<SearchOutlined />}
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
-            allowClear
-            style={{ width: 200 }}
-          />
-          <Button
-            type="primary"
-            icon={<PlusOutlined />}
-            onClick={() => {
-              setIsModalVisible(true);
-              setEditingUser(null);
-              form.resetFields();
-            }}
-          >
-            Add User
-          </Button>
-        </Space>
-      }
-    >
+    <Card title="Users List" style={{ marginTop: 20 }}>
+      {/* Arama ve buton satırı */}
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "10px",
+          marginBottom: "15px",
+          justifyContent: "flex-end",
+        }}
+      >
+        <Input
+          placeholder="Search users..."
+          prefix={<SearchOutlined />}
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+          allowClear
+          style={{ width: "250px", minWidth: "180px", flex: "1 1 auto" }}
+        />
+        <Button
+          type="primary"
+          icon={<PlusOutlined />}
+          onClick={() => {
+            setIsModalVisible(true);
+            setEditingUser(null);
+            form.resetFields();
+          }}
+        >
+          Add User
+        </Button>
+      </div>
+
       <div style={{ overflowX: "auto", maxWidth: "100%" }}>
         <Table<User>
           size="middle"

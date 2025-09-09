@@ -141,33 +141,38 @@ const Posts: React.FC = () => {
   ];
 
   return (
-    <Card
-      title="Posts List"
-      style={{ marginTop: 20 }}
-      extra={
-        <Space>
-          <Input
-            placeholder="Search posts..."
-            prefix={<SearchOutlined />}
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
-            allowClear
-            style={{ width: 200 }}
-          />
-          <Button
-            type="primary"
-            icon={<PlusOutlined />}
-            onClick={() => {
-              setIsModalVisible(true);
-              setEditingPost(null);
-              form.resetFields();
-            }}
-          >
-            Add Post
-          </Button>
-        </Space>
-      }
-    >
+    <Card title="Posts List" style={{ marginTop: 20 }}>
+      {/* Arama ve buton satırı */}
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "10px",
+          marginBottom: "15px",
+          justifyContent: "flex-end",
+        }}
+      >
+        <Input
+          placeholder="Search posts..."
+          prefix={<SearchOutlined />}
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+          allowClear
+          style={{ width: "250px", minWidth: "180px", flex: "1 1 auto" }}
+        />
+        <Button
+          type="primary"
+          icon={<PlusOutlined />}
+          onClick={() => {
+            setIsModalVisible(true);
+            setEditingPost(null);
+            form.resetFields();
+          }}
+        >
+          Add Post
+        </Button>
+      </div>
+
       <div style={{ overflowX: "auto", maxWidth: "100%" }}>
         <Table<Post>
           size="middle"
