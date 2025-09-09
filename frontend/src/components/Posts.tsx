@@ -9,6 +9,8 @@ import {
   Space,
   Popconfirm,
   message,
+  Row,
+  Col,
 } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import {
@@ -124,16 +126,12 @@ const Posts: React.FC = () => {
             icon={<EditOutlined />}
             onClick={() => handleEdit(record)}
             type="link"
-          >
-            
-          </Button>
+          />
           <Popconfirm
             title="Are you sure you want to delete?"
             onConfirm={() => handleDelete(record.id)}
           >
-            <Button danger type="link" icon={<DeleteOutlined />}>
-              
-            </Button>
+            <Button danger type="link" icon={<DeleteOutlined />} />
           </Popconfirm>
         </Space>
       ),
@@ -143,35 +141,31 @@ const Posts: React.FC = () => {
   return (
     <Card title="Posts List" style={{ marginTop: 20 }}>
       {/* Arama ve buton satırı */}
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "10px",
-          marginBottom: "15px",
-          justifyContent: "flex-end",
-        }}
-      >
-        <Input
-          placeholder="Search posts..."
-          prefix={<SearchOutlined />}
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-          allowClear
-          style={{ width: "250px", minWidth: "180px", flex: "1 1 auto" }}
-        />
-        <Button
-          type="primary"
-          icon={<PlusOutlined />}
-          onClick={() => {
-            setIsModalVisible(true);
-            setEditingPost(null);
-            form.resetFields();
-          }}
-        >
-          Add Post
-        </Button>
-      </div>
+      <Row gutter={[10, 10]} style={{ marginBottom: 15, width: "100%" }}>
+        <Col xs={24} sm={16} md={18}>
+          <Input
+            placeholder="Search posts..."
+            prefix={<SearchOutlined />}
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+            allowClear
+          />
+        </Col>
+        <Col xs={24} sm={8} md={6}>
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={() => {
+              setIsModalVisible(true);
+              setEditingPost(null);
+              form.resetFields();
+            }}
+            block
+          >
+            Add Post
+          </Button>
+        </Col>
+      </Row>
 
       <div style={{ overflowX: "auto", maxWidth: "100%" }}>
         <Table<Post>

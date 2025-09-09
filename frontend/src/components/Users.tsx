@@ -9,6 +9,8 @@ import {
   Space,
   Popconfirm,
   message,
+  Row,
+  Col,
 } from "antd";
 import {
   PlusOutlined,
@@ -129,16 +131,12 @@ const Users: React.FC = () => {
             icon={<EditOutlined />}
             onClick={() => handleEdit(record)}
             type="link"
-          >
-            
-          </Button>
+          />
           <Popconfirm
             title="Are you sure you want to delete?"
             onConfirm={() => handleDelete(record.id)}
           >
-            <Button danger type="link" icon={<DeleteOutlined />}>
-              
-            </Button>
+            <Button danger type="link" icon={<DeleteOutlined />} />
           </Popconfirm>
         </Space>
       ),
@@ -148,35 +146,31 @@ const Users: React.FC = () => {
   return (
     <Card title="Users List" style={{ marginTop: 20 }}>
       {/* Arama ve buton satırı */}
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "10px",
-          marginBottom: "15px",
-          justifyContent: "flex-end",
-        }}
-      >
-        <Input
-          placeholder="Search users..."
-          prefix={<SearchOutlined />}
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-          allowClear
-          style={{ width: "250px", minWidth: "180px", flex: "1 1 auto" }}
-        />
-        <Button
-          type="primary"
-          icon={<PlusOutlined />}
-          onClick={() => {
-            setIsModalVisible(true);
-            setEditingUser(null);
-            form.resetFields();
-          }}
-        >
-          Add User
-        </Button>
-      </div>
+      <Row gutter={[10, 10]} style={{ marginBottom: 15, width: "100%" }}>
+        <Col xs={24} sm={16} md={18}>
+          <Input
+            placeholder="Search users..."
+            prefix={<SearchOutlined />}
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+            allowClear
+          />
+        </Col>
+        <Col xs={24} sm={8} md={6}>
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={() => {
+              setIsModalVisible(true);
+              setEditingUser(null);
+              form.resetFields();
+            }}
+            block
+          >
+            Add User
+          </Button>
+        </Col>
+      </Row>
 
       <div style={{ overflowX: "auto", maxWidth: "100%" }}>
         <Table<User>
