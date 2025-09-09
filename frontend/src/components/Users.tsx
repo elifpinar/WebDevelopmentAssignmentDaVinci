@@ -130,14 +130,14 @@ const Users: React.FC = () => {
             onClick={() => handleEdit(record)}
             type="link"
           >
-            Edit
+            
           </Button>
           <Popconfirm
             title="Are you sure you want to delete?"
             onConfirm={() => handleDelete(record.id)}
           >
             <Button danger type="link" icon={<DeleteOutlined />}>
-              Delete
+              
             </Button>
           </Popconfirm>
         </Space>
