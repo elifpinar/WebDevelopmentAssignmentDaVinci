@@ -180,7 +180,7 @@ const Posts: React.FC = () => {
           dataSource={filteredPosts}
           rowKey="id"
           loading={loading}
-          pagination={{ pageSize: 5, responsive: true }}
+          pagination={{ responsive: true }}
           scroll={{ x: "max-content" }}
         />
       </div>
