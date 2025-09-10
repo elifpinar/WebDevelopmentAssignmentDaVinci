@@ -144,6 +144,7 @@ const Posts: React.FC = () => {
       <Row gutter={[10, 10]} style={{ marginBottom: 15, width: "100%" }}>
         <Col xs={24} sm={16} md={18}>
           <Input
+          size="large"
             placeholder="Search posts..."
             prefix={<SearchOutlined />}
             value={searchText}

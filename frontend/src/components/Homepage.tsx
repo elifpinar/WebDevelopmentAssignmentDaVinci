@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Typography, Button } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserOutlined, FileTextOutlined } from "@ant-design/icons";
 
 const { Title } = Typography;
@@ -30,7 +30,6 @@ const cards: DashboardCard[] = [
   },
 ];
 
-
 const cardBase: React.CSSProperties = {
   width: "100%",
   maxWidth: 300,
@@ -40,10 +39,11 @@ const cardBase: React.CSSProperties = {
   boxShadow: "0 6px 20px rgba(0,0,0,0.1)",
   position: "relative",
   overflow: "hidden",
-  background: "linear-gradient(135deg, #2a2a2a 0%, #1d1d1d 100%)",
+  background: "linear-gradient(135deg, #3a2f33ff 0%, #0f0909ff 100%)",
   color: "#fff",
   margin: "0 auto",
   transition: "all 0.3s ease",
+  cursor: "pointer", 
 };
 
 const contentStyle: React.CSSProperties = {
@@ -52,6 +52,8 @@ const contentStyle: React.CSSProperties = {
 };
 
 const Homepage: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <div style={{ padding: 20 }}>
       <Card
@@ -72,6 +74,7 @@ const Homepage: React.FC = () => {
               hoverable
               style={cardBase}
               bodyStyle={{ padding: 24 }}
+              onClick={() => navigate(card.link)} 
               onMouseEnter={e => (e.currentTarget.style.transform = "scale(1.05)")}
               onMouseLeave={e => (e.currentTarget.style.transform = "scale(1)")}
             >

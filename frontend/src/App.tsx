@@ -5,6 +5,7 @@ import { Button, Layout, Menu, Typography, theme } from "antd";
 import Homepage from "./components/Homepage";
 import Users from "./components/Users";
 import Posts from "./components/Posts";
+import { Grid } from "antd"; // ekle
 
 const { Header, Sider, Content } = Layout;
 const { Title } = Typography;
@@ -26,14 +27,15 @@ const App = () => {
   const [collapsed, setCollapsed] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
+  const screens = useBreakpoint(); 
 
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
-const handleMenuClick = ({ key }: { key: string }) => {
-    navigate(key);       // sayfa yönlendirme
-    setCollapsed(true);  // menü tıklanınca sider kapanır
+  const handleMenuClick = ({ key }: { key: string }) => {
+    navigate(key);       
+    setCollapsed(true);  
   };
 
   return (
@@ -44,9 +46,14 @@ const handleMenuClick = ({ key }: { key: string }) => {
         collapsed={collapsed}
         breakpoint="lg"
         collapsedWidth="0"
+        width={screens.xs ? "100vw" : 200}  
         style={{
           height: "100vh",
           zIndex: 1000,
+          maxWidth: screens.xs ? "100%" : 200, 
+          position: screens.xs ? "fixed" : "relative", 
+          left: screens.xs && !collapsed ? 0 : undefined, 
+          top: 0,
         }}
       >
         <div
@@ -66,7 +73,7 @@ const handleMenuClick = ({ key }: { key: string }) => {
           mode="inline"
           selectedKeys={[location.pathname]}
           items={menuItems}
-          onClick={handleMenuClick} // burayı ekledik
+          onClick={handleMenuClick}
         />
       </Sider>
 
@@ -116,5 +123,7 @@ const WrappedApp = () => (
     <App />
   </Router>
 );
+const { useBreakpoint } = Grid;
+
 
 export default WrappedApp;

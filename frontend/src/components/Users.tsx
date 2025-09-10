@@ -145,11 +145,11 @@ const Users: React.FC = () => {
 
   return (
     <Card title="Users List" style={{ marginTop: 20 }}>
-      {/* Arama ve buton satırı */}
       <Row gutter={[10, 10]} style={{ marginBottom: 15, width: "100%" }}>
         <Col xs={24} sm={16} md={18}>
           <Input
             placeholder="Search users..."
+            size="large"
             prefix={<SearchOutlined />}
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
