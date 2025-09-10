@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { MenuFoldOutlined, MenuUnfoldOutlined, HomeOutlined, UserOutlined, FileTextOutlined } from "@ant-design/icons";
-import { Button, Layout, Menu, Typography, theme } from "antd";
+import { Button, Layout, Menu, Typography, theme, Grid } from "antd"; // Grid buradan import
 import Homepage from "./components/Homepage";
 import Users from "./components/Users";
 import Posts from "./components/Posts";
-import { Grid } from "antd"; // ekle
 
 const { Header, Sider, Content } = Layout;
 const { Title } = Typography;
+const { useBreakpoint } = Grid; 
 
 const menuItems = [
   { key: "/", icon: <HomeOutlined />, label: "Homepage" },
@@ -34,8 +34,8 @@ const App = () => {
   } = theme.useToken();
 
   const handleMenuClick = ({ key }: { key: string }) => {
-    navigate(key);       
-    setCollapsed(true);  
+    navigate(key);
+    setCollapsed(true);
   };
 
   return (
@@ -46,13 +46,13 @@ const App = () => {
         collapsed={collapsed}
         breakpoint="lg"
         collapsedWidth="0"
-        width={screens.xs ? "100vw" : 200}  
+        width={screens.xs ? "100vw" : 200}
         style={{
           height: "100vh",
           zIndex: 1000,
-          maxWidth: screens.xs ? "100%" : 200, 
-          position: screens.xs ? "fixed" : "relative", 
-          left: screens.xs && !collapsed ? 0 : undefined, 
+          maxWidth: screens.xs ? "100%" : 200,
+          position: screens.xs ? "fixed" : "relative",
+          left: screens.xs && !collapsed ? 0 : undefined,
           top: 0,
         }}
       >
@@ -90,7 +90,7 @@ const App = () => {
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             onClick={() => setCollapsed(!collapsed)}
-            style={{ fontSize: "16px", width: 64, height: 64,     zIndex: 1100, position: "relative"  }}
+            style={{ fontSize: "16px", width: 64, height: 64, zIndex: 1100, position: "relative" }}
           />
           <div style={{ marginLeft: 16 }}>
             <PageTitle />
@@ -123,7 +123,5 @@ const WrappedApp = () => (
     <App />
   </Router>
 );
-const { useBreakpoint } = Grid;
-
 
 export default WrappedApp;
