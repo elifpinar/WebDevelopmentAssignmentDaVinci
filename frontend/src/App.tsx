@@ -90,7 +90,7 @@ const App = () => {
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             onClick={() => setCollapsed(!collapsed)}
-            style={{ fontSize: "16px", width: 64, height: 64 }}
+            style={{ fontSize: "16px", width: 64, height: 64,     zIndex: 1100, position: "relative"  }}
           />
           <div style={{ marginLeft: 16 }}>
             <PageTitle />
